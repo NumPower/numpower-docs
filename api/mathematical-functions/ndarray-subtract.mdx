@@ -1,25 +1,25 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# NDArray::add
+# NDArray::subtract
 
 ```php
-public static function add($a, $b);
+public static function subtract($a, $b);
 ```
 
-> Add arguments element-wise
+> Subtract two arrays element-wise
 
 ## Parameters
 
 #### `$a` `$b`
   - **Type** - NDArray | array | scalar
-  - The arrays to be added, `$a` and `$b` must be of the same shape.
+  - Input arrays
 
 ## Return
 
 #### `NDArray`
 
-- The sum of `$a` and `$b`
+- Element-wise subtraction of `$a` and `$b` element-wise
 
 ## Examples
 
@@ -30,16 +30,16 @@ public static function add($a, $b);
 ```php
 use \NDArray as nd;
 
-$a = new nd([[2, -2], [1, -1]]);
-$b = new nd([[3, -3], [2, -1]]);
+$a = new nd([[1, 2], [3, 4]]);
+$b = new nd([[1, 2], [3, 4]]);
 
-$c = $a + $b;
+$c = nd::subtract($a, $b);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[[0, 0],
+ [0, 0]]
 ```
 
 
@@ -50,17 +50,14 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$a = new nd([[2, -2], [1, -1]]);
-$b = new nd([[3, -3], [2, -1]]);
-
-$c = nd::add($a, $b);
+$c = nd::subtract([1, 2, 3], [10, 10, 10]);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[-9, -8, -7]
 ```
+
 
 </TabItem>
 <TabItem value="example3" label="Example 3">
@@ -69,14 +66,17 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$c = nd::add([5, 2, -3], [4, 3, 2]);
+$a = new nd([[1, 2], [3, 4]]);
+$b = new nd([[1, 2], [3, 4]]);
+
+$c = $a - $b;
 
 print_r($c);
 ```
 ```php
-[9, 5, -1]
+[[0, 0],
+ [0, 0]]
 ```
-
 
 </TabItem>
 </Tabs>

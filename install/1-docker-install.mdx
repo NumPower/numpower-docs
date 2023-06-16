@@ -1,0 +1,34 @@
+# Docker Image
+
+If you prefer a hassle-free installation process, you can use a pre-built Docker image that includes NumPower
+and its dependencies. The Docker image provides a convenient and isolated environment to run your
+PHP code with NumPower already installed.
+
+To install NumPower using the Docker image, follow these steps:
+
+- Install Docker on your system by following the instructions provided by Docker for your operating system.
+
+- Pull the NumPower Docker image from the Docker Hub by running the following command in your terminal or command prompt:
+
+```bash
+docker pull numpower/numpower:ubuntu-php82
+```
+
+- For GPU support with CUDA, use the image:
+
+```bash
+docker pull numpower/numpower:ubuntu-php82-cuda
+```
+
+- Once the image is downloaded, you can run your PHP code with NumPower
+by executing the following command in your terminal or command prompt:
+
+```bash
+docker run -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82 php /app/your-script.php
+```
+> Replace /path/to/your/code with the path to your PHP code on the host machine. Also, replace your-script.php with the name of your PHP script that uses NumPower.
+
+This command mounts your local code directory into the Docker container and runs the PHP script with NumPower.
+
+Using the Docker image provides a convenient way to start using NumPower without worrying about the compilation
+process. However, if you prefer to compile NumPower from the source, continue reading for the alternative method.

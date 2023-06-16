@@ -1,25 +1,25 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# NDArray::add
+# NDArray::divide
 
 ```php
-public static function add($a, $b);
+public static function divide($a, $b);
 ```
 
-> Add arguments element-wise
+> Return the division between two arrays element-wise
 
 ## Parameters
 
 #### `$a` `$b`
   - **Type** - NDArray | array | scalar
-  - The arrays to be added, `$a` and `$b` must be of the same shape.
+  - Input arrays
 
 ## Return
 
 #### `NDArray`
 
-- The sum of `$a` and `$b`
+- Array with the division between `$a` and `$b` element-wise
 
 ## Examples
 
@@ -30,16 +30,12 @@ public static function add($a, $b);
 ```php
 use \NDArray as nd;
 
-$a = new nd([[2, -2], [1, -1]]);
-$b = new nd([[3, -3], [2, -1]]);
-
-$c = $a + $b;
+$c = nd::divide([5, 2, -3], [4, 3, 2]);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[1.25, 0.666667, -1.5]
 ```
 
 
@@ -50,17 +46,18 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$a = new nd([[2, -2], [1, -1]]);
-$b = new nd([[3, -3], [2, -1]]);
+$a = new nd([[1, 2], [3, 4]]);
+$b = new nd([[1, 2], [3, 4]]);
 
-$c = nd::add($a, $b);
+$c = nd::divide($a, $b);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[[1, 1],
+ [1, 1]]
 ```
+
 
 </TabItem>
 <TabItem value="example3" label="Example 3">
@@ -69,14 +66,17 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$c = nd::add([5, 2, -3], [4, 3, 2]);
+$a = new nd([[1, 2], [3, 4]]);
+$b = new nd([[1, 2], [3, 4]]);
+
+$c = $a / $b;
 
 print_r($c);
 ```
 ```php
-[9, 5, -1]
+[[1, 1],
+ [1, 1]]
 ```
-
 
 </TabItem>
 </Tabs>

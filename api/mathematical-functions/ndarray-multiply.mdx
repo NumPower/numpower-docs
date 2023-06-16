@@ -1,25 +1,25 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# NDArray::add
+# NDArray::multiply
 
 ```php
-public static function add($a, $b);
+public static function multiply($a, $b);
 ```
 
-> Add arguments element-wise
+> Multiply arrays element-wise
 
 ## Parameters
 
 #### `$a` `$b`
   - **Type** - NDArray | array | scalar
-  - The arrays to be added, `$a` and `$b` must be of the same shape.
+  - The arrays to be multiplied, `$a` and `$b` must be of the same shape.
 
 ## Return
 
 #### `NDArray`
 
-- The sum of `$a` and `$b`
+- The multiplication of `$a` and `$b` element-wise
 
 ## Examples
 
@@ -33,13 +33,13 @@ use \NDArray as nd;
 $a = new nd([[2, -2], [1, -1]]);
 $b = new nd([[3, -3], [2, -1]]);
 
-$c = $a + $b;
+$c = $a * $b;
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[[6, 6],
+ [2, 1]]
 ```
 
 
@@ -53,13 +53,13 @@ use \NDArray as nd;
 $a = new nd([[2, -2], [1, -1]]);
 $b = new nd([[3, -3], [2, -1]]);
 
-$c = nd::add($a, $b);
+$c = nd::multiply($a, $b);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[[6, 6],
+ [2, 1]]
 ```
 
 </TabItem>
@@ -69,12 +69,15 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$c = nd::add([5, 2, -3], [4, 3, 2]);
+$a = new nd([3, 2]);
+$b = new nd([-1, -1]);
+
+$c = nd::multiply($a, $b);
 
 print_r($c);
 ```
 ```php
-[9, 5, -1]
+[-3, -2]
 ```
 
 

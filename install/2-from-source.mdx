@@ -1,0 +1,40 @@
+# Compiling from source
+
+Compiling NumPower from the source allows you to customize the installation and optimize it for your specific
+environment. This method requires more manual steps but provides flexibility and control over the installation process.
+
+## Requirements
+Before installing NumPower, ensure that your system meets the following requirements:
+
+- PHP development files and header files. This may vary based on your operating system.
+Consult your system's package manager or PHP documentation for specific instructions.
+- C++ compiler with C++11 support (such as GCC or Clang).
+
+Optional requirements (for enhanced performance and additional functionalities):
+
+- **CUBLAS**: NVIDIA CUDA Toolkit with CUBLAS library (for GPU-accelerated linear algebra operations)
+- **CBLAS**: CBLAS library (for CPU-based linear algebra operations)
+- **LAPACKE**: LAPACKE library (for advanced linear algebra operations)
+
+## Compiling
+
+- Clone the NumPower source code repository from the official GitHub repository to your local machine.
+
+- Build and compile the PHP extension by running the appropriate commands specific to your environment.
+
+```bash
+$ phpize
+$ ./configure
+$ make
+$ make install
+```
+
+- Once the compilation is complete, you will obtain a compiled PHP extension file. If necessary, copy the compiled
+extension file to the appropriate location in your PHP extensions directory.
+
+- Update your PHP configuration file (php.ini) to include the extension entry for NumPower.
+Add the following line to the `php.ini` file:
+
+```ini
+extension=ndarray.so
+```

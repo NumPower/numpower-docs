@@ -1,25 +1,29 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# NDArray::add
+# NDArray::prod
 
 ```php
-public static function add($a, $b);
+public static function prod($a, $axis = NULL);
 ```
 
-> Add arguments element-wise
+> Return the product of array
 
 ## Parameters
 
-#### `$a` `$b`
+#### `$a`
   - **Type** - NDArray | array | scalar
-  - The arrays to be added, `$a` and `$b` must be of the same shape.
+  - Input array
+
+#### `$a`
+  - **Type** - NDArray | array | scalar
+  - The axis to perform the product. If `$axis` is NULL, will calculate the product of all the elements of `$a`.
 
 ## Return
 
 #### `NDArray`
 
-- The sum of `$a` and `$b`
+- Array with the same shape of `$a`. If `$axis` is not NULL, the specified axis is removed.
 
 ## Examples
 
@@ -30,16 +34,14 @@ public static function add($a, $b);
 ```php
 use \NDArray as nd;
 
-$a = new nd([[2, -2], [1, -1]]);
-$b = new nd([[3, -3], [2, -1]]);
+$a = new nd([[1, 2], [3, 4]]);
 
-$c = $a + $b;
+$c = nd::prod($a);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+24
 ```
 
 
@@ -50,17 +52,14 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$a = new nd([[2, -2], [1, -1]]);
-$b = new nd([[3, -3], [2, -1]]);
-
-$c = nd::add($a, $b);
+$c = nd::prod([[1, 2], [3, 4]], axis: 0);
 
 print_r($c);
 ```
 ```php
-[[5, -5],
- [3, -2]]
+[3, 8]
 ```
+
 
 </TabItem>
 <TabItem value="example3" label="Example 3">
@@ -69,14 +68,15 @@ print_r($c);
 ```php
 use \NDArray as nd;
 
-$c = nd::add([5, 2, -3], [4, 3, 2]);
+$a = new nd([[1, 2], [3, 4]]);
+
+$c = nd::prod($a, axis: 1);
 
 print_r($c);
 ```
 ```php
-[9, 5, -1]
+[2, 12]
 ```
-
 
 </TabItem>
 </Tabs>
