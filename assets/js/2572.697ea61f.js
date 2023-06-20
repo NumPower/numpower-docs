@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknumpower=self.webpackChunknumpower||[]).push([[2572],{2572:(e,u,p)=>{p.r(u)}}]);
