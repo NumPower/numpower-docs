@@ -3,13 +3,6 @@
 When available through an NVIDIA card with CUDA support, NumPower can store and perform operations on the graphics 
 card, this is especially interesting for linear algebra operations on large tensors.
 
-:::info
-
-GPU operations on many occasions can be considerably slower than CPU operations, especially in simple 
-operations. There is a cost to using VRAM.
-
-:::
-
 ## Copy NDArray to GPU
 
 To copy an `NDArray` to your video card, just use the `gpu()` method. This method will return a new NDArray with 

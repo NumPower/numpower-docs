@@ -58,6 +58,7 @@ const config = {
     ],
   ],
   plugins: [
+    require.resolve('docusaurus-lunr-search'),
     [
       'content-docs',
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
@@ -91,6 +92,13 @@ const config = {
       // Replace with your project's social card
       navbar: {
         title: 'NumPower',
+        logo: {
+          alt: '',
+          src: 'img/numpower.png',
+          srcDark: 'img/numpower_white.png',
+          width: 32,
+          height: 32,
+        },
         items: [
           {to: '/install/install', label: 'Getting Started', position: 'left'},
           {
