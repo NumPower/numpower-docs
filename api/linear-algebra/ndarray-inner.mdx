@@ -1,0 +1,101 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::inner
+
+```php
+public static function inner(NDArray|array|scalar $a, NDArray|array|scalar $b);
+```
+
+---
+Calculates the inner product of two arrays. This operation involves multiplying corresponding
+elements of the arrays and summing them up.
+
+- When dealing with N-D arrays, the inner product is computed by taking a sum product over the last axes of the arrays.
+---
+
+## Parameters
+
+### `$a` `$b`
+> **Type** `NDArray`|`array`|`long`|`double`
+
+>  The arrays to perfom the inner product.
+
+---
+
+## Return
+
+> **Type** `NDArray`
+>- If both `$a` and `$b` are scalars or 1-D arrays, the function will return a scalar value.
+Otherwise, if the input arrays have more than one dimension, an array will be returned.
+
+
+---
+
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([2, -2,   3]);
+$b = nd::array([1, -1.5, 3]);
+
+$result = nd::inner($a, $b);
+print_r($result);
+```
+```php
+14
+```
+
+
+</TabItem>
+<TabItem value="example2" label="Example 2">
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([[2, -2,   3]]);
+$b = nd::array([[1, -1.5, 3]]);
+
+$result = nd::inner($a, $b);
+print_r($result);
+```
+```php
+[[14]]
+```
+
+</TabItem>
+<TabItem value="example3" label="Example 3">
+
+
+```php
+use \NDArray as nd;
+
+
+$result = nd::dot(2, 2);
+print_r($result);
+```
+```php
+4
+```
+
+
+</TabItem>
+</Tabs>

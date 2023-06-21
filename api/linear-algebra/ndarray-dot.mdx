@@ -1,0 +1,114 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::dot
+
+```php
+public static function dot(NDArray|array|scalar $a, NDArray|array|scalar $b): NDArray;
+```
+The `dot` function performs the dot product of two arrays. The behaviour of the function
+varies depending on the dimensions and shapes of the input arrays:
+
+- If both `$a` and `$b` are 1-D arrays, the dot product is computed as the inner product of the vectors.
+- If both `$a` and `$b` are 2-D arrays, the dot product is computed as the matrix multiplication
+(See <a href="/api/linear-algebra/ndarray-matmul">NDArray::matmul</a>).
+- If either `$a` or `$b` is a 0-D (scalar) array, the dot product is equivalent to element-wise multiplication.
+(See <a href="/api/mathematical-functions/ndarray-multiply">NDArray::multiply</a>).
+- If `$a` is an N-D array and `$b` is a 1-D array, the dot product is computed as the
+sum product over the last axis of `$a` and `$b`.
+
+---
+
+## Parameters
+
+### `$a` `$b`
+> **Type** `NDArray`|`array`|`long`|`double`
+>- The arrays to perfom the dot product.
+
+
+---
+
+## Return
+
+> **Type** - NDArray
+>- If both `$a` and `$b` are scalars or 1-D arrays, the dot product operation yields a scalar value.
+In this case, a single scalar is returned as the result.
+>- If either `$a` or `$b` is a scalar and the other is an array, or if both `$a` and `$b` are arrays
+with any dimensionality greater than 1, the dot product operation results in an array.
+The returned array will have a shape determined by the dimensions of `$a` and `$b` according
+to the dot product rules.
+
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([[1, 2],[3, 4]]);
+$b = nd::array([1, 2]);
+
+$result = nd::dot($a, $b);
+print_r($result);
+```
+```php
+[5, 11]
+```
+
+
+</TabItem>
+<TabItem value="example2" label="Example 2">
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([[2, -2], [1, -1]]);
+$b = new nd([[3, -3], [2, -1]]);
+
+$c = nd::dot($a, $b);   // Equivalent to nd::matmul($a, $b)
+
+print_r($c);
+```
+```php
+[[2, -4],
+ [1, -2]]
+```
+
+</TabItem>
+<TabItem value="example3" label="Example 3">
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([2, -2]);
+$b = new nd([1, -1.5]);
+
+$c = nd::dot($a, $b);
+
+print_r($c);
+```
+```php
+5
+```
+
+
+</TabItem>
+</Tabs>

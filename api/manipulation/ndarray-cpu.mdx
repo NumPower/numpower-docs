@@ -1,0 +1,63 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::cpu
+
+```php
+public function cpu(): NDArray;
+```
+Copy the NDArray to the CPU for computation. If the NDArray is already in RAM, a copy will still be made.
+
+---
+
+## Return
+
+> **Type** `NDArray`
+>- A copy of the NDArray but stored in RAM.
+
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a_gpu = nd::array([2, -2,   3])->gpu();
+
+$a_cpu = $a->cpu();
+
+$a_gpu->dump();
+$a_cpu->dump();
+```
+```php @title="Output"
+=================================================
+NDArray.uuid                    0
+NDArray.dims                    [ 3 ]
+NDArray.strides                 [ 4 ]
+NDArray.ndim                    1
+NDArray.device                  GPU
+NDArray.refcount                1
+NDArray.descriptor.elsize       4
+NDArray.descriptor.numElements  3
+NDArray.descriptor.type         float32
+=================================================
+
+=================================================
+NDArray.uuid                    1
+NDArray.dims                    [ 3 ]
+NDArray.strides                 [ 4 ]
+NDArray.ndim                    1
+NDArray.device                  CPU
+NDArray.refcount                1
+NDArray.descriptor.elsize       4
+NDArray.descriptor.numElements  3
+NDArray.descriptor.type         float32
+=================================================
+```
+</TabItem>
+</Tabs>

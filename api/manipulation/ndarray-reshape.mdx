@@ -1,1 +1,22 @@
 # NDArray::reshape
+
+```php
+public function reshape(array $shape): NDArray;
+```
+Changes the shape of the NDArray.
+
+---
+
+## Parameters
+
+### `$shape`
+> **Type** `array`
+>- The new shape of the NDArray.
+
+---
+
+## Return
+
+> **Type** - NDArray
+>- Return a view of the array with shape `$shape`. To be compatible, the new shape must have the same amount of
+elements as the old one.

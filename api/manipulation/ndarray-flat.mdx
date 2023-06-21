@@ -1,0 +1,37 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::flatten
+
+```php
+public static function flatten(NDArray|array|scalar $a): NDArray;
+```
+Return a **copy** of the array `$a` into one dimension.
+
+---
+
+## Parameters
+
+### `$a`
+> **Type** `NDArray` `array` `scalar`
+>- Target array
+
+---
+
+## Return
+
+> **Type** - NDArray
+>- A copy of `$a`, with dimensions collapsed to 1-d, in the same device.
+
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+
+
+

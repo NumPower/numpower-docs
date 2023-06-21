@@ -1,0 +1,86 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::gpu
+
+```php
+public function gpu(): NDArray;
+```
+Copy the NDArray to the GPU for computation. If the NDArray is already in VRAM, a copy will still be made.
+
+---
+
+## Return
+
+> **Type** `NDArray`
+>- A copy of the NDArray but stored in VRAM.
+
+
+---
+
+## Exceptions
+
+If no devices are detected or support GPU operations, a fatal error will be raised.
+
+```php
+Fatal error: Uncaught Error: No GPU device available or CUDA not enabled in /src/test.php:8
+Stack trace:
+#0 /src/test.php(8): NDArray->gpu()
+```
+
+---
+
+## Notes
+
+:::tip
+
+#### CUDA DEVICES
+You can use the dumpDevices method to check which devices were detected by NumPower.
+Currently only video cards with CUDA support are supported (NVIDIA).
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([2, -2,   3]);
+
+$a_gpu = $a->gpu();
+
+$a->dump();
+$a_gpu->dump();
+```
+```php @title="Output"
+=================================================
+NDArray.uuid                    0
+NDArray.dims                    [ 3 ]
+NDArray.strides                 [ 4 ]
+NDArray.ndim                    1
+NDArray.device                  CPU
+NDArray.refcount                1
+NDArray.descriptor.elsize       4
+NDArray.descriptor.numElements  3
+NDArray.descriptor.type         float32
+=================================================
+
+=================================================
+NDArray.uuid                    1
+NDArray.dims                    [ 3 ]
+NDArray.strides                 [ 4 ]
+NDArray.ndim                    1
+NDArray.device                  GPU
+NDArray.refcount                1
+NDArray.descriptor.elsize       4
+NDArray.descriptor.numElements  3
+NDArray.descriptor.type         float32
+=================================================
+```
+</TabItem>
+</Tabs>

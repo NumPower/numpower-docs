@@ -1,0 +1,40 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::dump
+
+```php
+public function dump() : void;
+```
+Dumps the internal information of the NDArray.
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([[1, 2, 3, 4]]);
+$a->dump();
+```
+```text @title="Output"
+=================================================
+NDArray.uuid                    0
+NDArray.dims                    [ 1 4 ]
+NDArray.strides                 [ 16 4 ]
+NDArray.ndim                    2
+NDArray.device                  CPU
+NDArray.refcount                1
+NDArray.descriptor.elsize       4
+NDArray.descriptor.numElements  4
+NDArray.descriptor.type         float32
+=================================================
+```
+</TabItem>
+</Tabs>
+

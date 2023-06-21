@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Linear algebra Functions"
+    "description": "Explore the functions provided by NumPower for generating arrays of random numbers, drawn from various probability distributions."
   }
 }

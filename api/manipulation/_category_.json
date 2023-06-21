@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "NDArray manipulation functions"
+    "description": "Understand more about the functions that allow you to alter the shape, size, and structure of NumPower arrays"
   }
 }

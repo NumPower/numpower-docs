@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Initialization functions"
+    "description": "Learn about the multiple ways to initialize arrays in NumPower, with functions to create arrays from existing data or initialize arrays with preset values."
   }
 }

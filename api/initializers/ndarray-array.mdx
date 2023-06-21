@@ -1,0 +1,63 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# NDArray::array
+
+```php
+public static function array(array $array): NDArray;
+```
+Creates a new NDArray from a PHP array of longs or doubles. It is the equivalent of `new NDArray($array);`
+
+---
+
+## Parameters
+
+### `$array`
+> **Type** `array[long|double,]`
+>- The PHP array to be converted to a NDArray
+
+---
+
+## Return
+
+> **Type** - NDArray
+>- A single-precision (float32) NDArray with the same shape and values of `$array`
+
+---
+
+## Notes
+
+
+:::note
+
+Every floating point in PHP is a double precision (float64) so some precision may be lost during conversion.
+
+
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([[1, 2], [3, 4]]);
+print_r($a);
+```
+```php
+[[1, 2],
+ [3, 4]]
+```
+
+
+</TabItem>
+</Tabs>
+
+---
+

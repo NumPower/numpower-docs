@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "NDArray logic functions"
+    "description": "This category includes functions for evaluating logical statements, including logical AND, OR, NOT operations, and comparison operations"
   }
 }

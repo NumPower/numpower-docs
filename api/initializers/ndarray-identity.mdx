@@ -1,1 +1,97 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # NDArray::identity
+
+```php
+public static function identity(long $size): NDArray;
+```
+This function returns a square array, where the main diagonal consists of ones and all other
+elements are zeros. It takes a parameter `$size` which determines the number of rows and columns
+in the output array.
+
+---
+
+## Parameters
+
+### `$size`
+> **Type** `long`
+>- Number of rows and columns of the new square array of size `($size, $size)`
+
+---
+
+## Return
+
+> **Type** - NDArray
+>- Return a new square array of size `($size, $size)`
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::identity(10);
+print_r($a);
+```
+```php
+[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+ [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+```
+
+
+</TabItem>
+<TabItem value="example2" label="Example 2" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::identity(0);
+print_r($a);
+```
+```php
+[]
+```
+
+
+</TabItem>
+<TabItem value="example3" label="Example 3" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::identity(-1);
+print_r($a);
+```
+```php
+Fatal error: Uncaught Error: negative dimensions are not allowed in /src/test.php:4
+```
+
+
+</TabItem>
+</Tabs>
+
+---
+
+## Exceptions
+
+If $size is less than 0 a Fatal error will be raised
+
+```php
+Fatal error: Uncaught Error: negative dimensions are not allowed in /src/test.php:4
+```

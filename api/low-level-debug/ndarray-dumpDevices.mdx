@@ -1,0 +1,47 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::dumpDevices
+
+```php
+public static function dumpDevices(): void;
+```
+Dumps information about available devices for GPU computation.
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+nd::dumpDevices();
+```
+```text @title="Output"
+==============================================================================
+Number of CUDA devices: 1
+
+---------------------------------------------------------------------------
+Device 0: NVIDIA GeForce RTX 2070 SUPER
+Compute capability: 7.5
+Total global memory: 8358854656 bytes
+Max threads per block: 1024
+Max threads in X-dimension of block: 1024
+Max threads in Y-dimension of block: 1024
+Max threads in Z-dimension of block: 64
+Max grid size in X-dimension: 2147483647
+Max grid size in Y-dimension: 65535
+Max grid size in Z-dimension: 65535
+Max grid size in Z-dimension: 65535
+Max grid size in Z-dimension: 65535
+Max grid size in Z-dimension: 65535
+---------------------------------------------------------------------------
+
+==============================================================================
+```
+</TabItem>
+</Tabs>

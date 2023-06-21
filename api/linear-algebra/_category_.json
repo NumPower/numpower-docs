@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Linear algebra Functions"
+    "description": "Dive into the functions associated with linear algebra operations, such as matrix multiplication, determinants, solving linear equations, among others."
   }
 }
