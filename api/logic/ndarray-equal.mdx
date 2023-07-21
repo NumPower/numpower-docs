@@ -1,9 +1,11 @@
 # NDArray::equal
 
 ```php
-public static function equal($a, $b);
+public static function equal(NDArray|array|scalar $a, NDArray|array|scalar $b): NDArray;
 ```
-Return `($a == $b)` element-wise.
+Performs an element-wise equality comparison between two arrays and returns a
+new array of the same shape. The result will be 1 where the
+elements are equal and 0 where they are not.
 
 
 ---

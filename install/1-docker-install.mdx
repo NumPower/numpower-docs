@@ -23,9 +23,18 @@ docker pull numpower/numpower:ubuntu-php82-cuda
 - Once the image is downloaded, you can run your PHP code with NumPower
 by executing the following command in your terminal or command prompt:
 
+#### CPU Run
+
 ```bash
 docker run -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82 php /app/your-script.php
 ```
+
+#### GPU Run
+Make sure you have nvidia-container-toolkit installed and that your docker is configured and ready to use the GPU
+```bash
+docker run --gpus all -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82-cuda php /app/your-script.php
+```
+
 > Replace /path/to/your/code with the path to your PHP code on the host machine. Also, replace your-script.php with the name of your PHP script that uses NumPower.
 
 This command mounts your local code directory into the Docker container and runs the PHP script with NumPower.

@@ -1,8 +1,10 @@
 # NDArray::lstsq
 
 ```php
-public static function lstsq($a);
+public static function lstsq(NDArray|array $a, NDArray|array $b): NDArray;
 ```
+Performs the least-squares solution to a linear matrix equation `Ax = b`,
+where `$a` is a given array and `$b` is the target array.
 
 ---
 

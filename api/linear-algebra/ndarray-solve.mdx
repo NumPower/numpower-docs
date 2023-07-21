@@ -1,16 +1,6 @@
 # NDArray::solve
 
 ```php
-public static function solve($a);
+public static function solve(NDArray|array $a, NDArray|array $b): NDArray;
 ```
-
----
-
-## Notes
-
-:::tip
-
-#### GPU SUPPORTED
-This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
-
-:::
+Solves a linear system of equations for `x`, where `Ax = b`, and `A` and `b` are given arrays.

@@ -1,0 +1,63 @@
+# NDArray::toImage
+
+```php
+public function toImage(): GdImage;
+```
+Convert an array of shape `(3, h, w)` to a PHP-GD RGB image.
+
+---
+
+## Notes
+
+:::note
+
+#### PHP-GD REQUIRED
+The PHP-GD extension must be installed during NumPower compilation for this function to be available.
+
+:::
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$gd_image_array = nd::array(imagecreatefromjpeg("test_img.jpg"));
+
+print_r($gd_image_array->shape());
+
+// Your operations here
+// ...
+// End of operations
+
+$gd_image = $gd_image_array->toImage();
+print_r($gd_image); // Now we have a GD image
+imagejpeg($gd_image, "out.jpg"); // Save the image
+```
+```php
+Array
+(
+    [0] => 3
+    [1] => 1200
+    [2] => 1920
+)
+GdImage Object
+(
+)
+```
+
+
+</TabItem>
+</Tabs>

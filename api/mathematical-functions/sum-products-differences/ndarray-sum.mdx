@@ -1,0 +1,42 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::sum
+
+```php
+public static function sum(NDArray|array|scalar $a, long $axis = NULL): NDArray|double;
+```
+Calculates the sum of array elements along a given axis.
+
+---
+
+## Parameters
+
+### `$a`
+> **Type** `NDArray`|`array`
+>- The input array.
+
+### `$axis`
+> **Type** `long`
+>- Specifies the axis along which the sum is performed. By default, (axis=NULL), the function sums all elements of the input array.
+
+---
+
+## Return
+
+> **Type** - `NDArray` `double`
+>- The function returns the summed array along the specified axis, resulting in an array with the same shape as
+the input array, but with the specified axis removed. If the input array is 0-dimensional or if axis=NULL,
+a scalar value is returned.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+

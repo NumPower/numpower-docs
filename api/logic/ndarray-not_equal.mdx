@@ -1,0 +1,18 @@
+# NDArray::not_equal
+
+```php
+public static function not_equal(NDArray|array|scalar $a, NDArray|array|scalar $b): NDArray;
+```
+Performs an element-wise inequality comparison between two arrays and returns a new array of the same shape.
+The result will be 1 where the elements are not equal and 0 where they are equal.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

@@ -1,8 +1,10 @@
 # NDArray::outer
 
 ```php
-public static function outer($a, $b);
+public static function outer(NDArray|array $a, NDArray|array $b): NDArray;
 ```
+Computes the outer product of two vectors, which results in a higher-dimensional array with dimensions
+calculated from the input arrays' dimensions.
 
 ---
 

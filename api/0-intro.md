@@ -33,7 +33,7 @@ This API documentation is divided into various categories to help you find the i
 
 - **Statistics**: This part houses statistical functions for operations such as averages, medians and variances.
 
-- **Low-level Debug**: This section includes functions and methods to assist in debugging, such as setting test validators, configuring the logger, and examining the state of the random number generator.
+- **Low-level Debug**: This section includes functions and methods to assist in debugging.
 
 Whether you're a beginner embarking on your journey in 
 numerical computing, a developer eager to incorporate 

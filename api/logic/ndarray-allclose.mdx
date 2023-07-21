@@ -1,0 +1,17 @@
+# NDArray::allclose
+
+```php
+public static function allclose(NDArray|array|scalar $a, NDArray|array|scalar $b, scalar $rtol = 1e-05, scalar atol = 1e-08): NDArray;
+```
+Checks if all elements in two arrays are approximately equal within a specified tolerance element-wise.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

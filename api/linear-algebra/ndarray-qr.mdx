@@ -1,16 +1,8 @@
 # NDArray::qr
 
 ```php
-public static function qr($a);
+public static function qr(NDArray|array $a): array;
 ```
+Calculates the QR decomposition of an array, which expresses it as the product of an orthogonal matrix (Q)
+and an upper triangular matrix (R).
 
----
-
-## Notes
-
-:::tip
-
-#### GPU SUPPORTED
-This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
-
-:::

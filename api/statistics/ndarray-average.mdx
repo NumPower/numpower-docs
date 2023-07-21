@@ -1,8 +1,10 @@
 # NDArray::average
 
 ```php
-public static function average($a);
+public static function average(NDArray|array|scalar $array, NDArray|array|scalar $weights = NULL): double;
 ```
+The weighted average of the elements in the array. It allows the user to specify weights
+for each element to be considered in the computation of the average.
 
 ---
 

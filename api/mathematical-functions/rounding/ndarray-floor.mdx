@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::floor
+
+```php
+public static function floor(NDArray|array|scalar $array): NDArray|double;
+```
+Rounds the elements of an array to the nearest integer less than or equal to the element,
+returning a new array with the elements rounded downwards.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

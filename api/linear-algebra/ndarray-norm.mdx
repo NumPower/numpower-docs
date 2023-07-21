@@ -1,8 +1,15 @@
 # NDArray::norm
 
 ```php
-public static function norm($a);
+public static function norm(NDArray|array $a, int $order = 2): double;
 ```
+Calculates different norms (e.g., L1 norm, L2 norm) of an array,
+providing various measures of its magnitude.
+
+#### $order options
+
+- **1** - L1-Norm
+- **2** - L2-Norm
 
 ---
 

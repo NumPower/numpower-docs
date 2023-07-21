@@ -1,0 +1,20 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::fix
+
+```php
+public static function fix(NDArray|array|scalar $array): NDArray|double;
+```
+Rounds the elements of an array towards zero, returning a new array with the elements rounded towards zero.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

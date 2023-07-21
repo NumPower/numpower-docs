@@ -1,8 +1,9 @@
 # NDArray::inv
 
 ```php
-public static function inv($a);
+public static function inv(NDArray|array $a): NDArray;
 ```
+Compute the inverse of a matrix, such that `$a * nd::inv($a) = np::identity($a->shape())`.
 
 ---
 

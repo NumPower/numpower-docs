@@ -1,0 +1,98 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::subtract
+
+```php
+public static function subtract($a, $b);
+```
+Subtract two arrays element-wise
+
+---
+
+## Parameters
+
+### `$a` `$b`
+  - **Type** - NDArray | array | scalar
+  - Input arrays
+
+---
+
+## Return
+
+### `NDArray`
+
+- Element-wise subtraction of `$a` and `$b` element-wise
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([[1, 2], [3, 4]]);
+$b = new nd([[1, 2], [3, 4]]);
+
+$c = nd::subtract($a, $b);
+
+print_r($c);
+```
+```php
+[[0, 0],
+ [0, 0]]
+```
+
+
+</TabItem>
+<TabItem value="example2" label="Example 2">
+
+
+```php
+use \NDArray as nd;
+
+$c = nd::subtract([1, 2, 3], [10, 10, 10]);
+
+print_r($c);
+```
+```php
+[-9, -8, -7]
+```
+
+
+</TabItem>
+<TabItem value="example3" label="Example 3">
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([[1, 2], [3, 4]]);
+$b = new nd([[1, 2], [3, 4]]);
+
+$c = $a - $b;
+
+print_r($c);
+```
+```php
+[[0, 0],
+ [0, 0]]
+```
+
+</TabItem>
+</Tabs>

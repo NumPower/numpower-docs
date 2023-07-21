@@ -1,5 +1,5 @@
 # Iterating
-You can iterate over an NDArray as you would a PHP array.
+NDArray does implement the `Traversable` interface. You can iterate over an NDArray as you would a PHP array.
 
 ```php
 <?php
@@ -27,4 +27,3 @@ Iterating over NDArray is not faster than iterating over a PHP array. Mathematic
 NDArrays are faster when using one of the methods available in NumPower.
 
 :::
-

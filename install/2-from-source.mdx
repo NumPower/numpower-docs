@@ -9,12 +9,13 @@ Before installing NumPower, ensure that your system meets the following requirem
 - PHP development files and header files. This may vary based on your operating system.
 Consult your system's package manager or PHP documentation for specific instructions.
 - C++ compiler with C++11 support (such as GCC or Clang).
+- **CBLAS**: CBLAS library (for CPU-based linear algebra operations)
+- **LAPACKE**: LAPACKE library (for advanced linear algebra operations)
 
 Optional requirements (for enhanced performance and additional functionalities):
 
 - **CUBLAS**: NVIDIA CUDA Toolkit with CUBLAS library (for GPU-accelerated linear algebra operations)
-- **CBLAS**: CBLAS library (for CPU-based linear algebra operations)
-- **LAPACKE**: LAPACKE library (for advanced linear algebra operations)
+- CUDA development toolkit (NVCC) and the necessary CUDA header files
 
 ## Compiling
 
@@ -22,11 +23,26 @@ Optional requirements (for enhanced performance and additional functionalities):
 
 - Build and compile the PHP extension by running the appropriate commands specific to your environment.
 
+### CPU Compile
+
 ```bash
 $ phpize
 $ ./configure
 $ make
 $ make install
+```
+
+### GPU Compile
+
+For now, when using the build with GPU support, AVX2 will be disabled even when available (due to a limitation of NVCC itself)
+so some CPU operations may be slower.
+
+We are studying a way to mix NVCC and GCC to use both technologies simultaneously.
+
+```bash
+$ phpize
+$ ./configure --with-cuda
+$ make install-cuda
 ```
 
 - Once the compilation is complete, you will obtain a compiled PHP extension file. If necessary, copy the compiled

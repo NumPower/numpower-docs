@@ -1,8 +1,17 @@
 # NDArray::svd
 
 ```php
-public static function svd($a);
+public static function svd(NDArray|array $a): array;
 ```
+Calculates the Singular Value Decomposition (SVD) of an array, which decomposes the array
+into three separate arrays: U, Sigma, and V^T.
+
+---
+
+## Return
+
+> **Type** - array[NDArray, NDArray, NDArray]
+>- PHP array containing the Unitary Arrays (U) `[0]`, the vector(s) with the singular values (S) `[1]` and the unitary arrays (Vh) `[2]`
 
 ---
 

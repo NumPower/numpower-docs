@@ -1,0 +1,8 @@
+{
+  "label": "Devices Functions",
+  "position": 0,
+  "link": {
+    "type": "generated-index",
+    "description": "Specific functions for device management (CPU and GPU)."
+  }
+}

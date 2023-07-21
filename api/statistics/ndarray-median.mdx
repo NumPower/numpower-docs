@@ -1,16 +1,11 @@
 # NDArray::median
 
 ```php
-public static function median($a);
+public static function median(NDArray|array|scalar $a): double;
 ```
+The median of the elements in the array. It sorts the array, and if the number of elements is odd,
+it returns the middle value; if the number of elements is even, it returns the average of the two middle values
+
 
 ---
 
-## Notes
-
-:::tip
-
-#### GPU SUPPORTED
-This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
-
-:::

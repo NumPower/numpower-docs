@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 public static function inner(NDArray|array|scalar $a, NDArray|array|scalar $b);
 ```
 
----
 Calculates the inner product of two arrays. This operation involves multiplying corresponding
 elements of the arrays and summing them up.
 
 - When dealing with N-D arrays, the inner product is computed by taking a sum product over the last axes of the arrays.
+
 ---
 
 ## Parameters
@@ -80,22 +80,6 @@ print_r($result);
 ```php
 [[14]]
 ```
-
-</TabItem>
-<TabItem value="example3" label="Example 3">
-
-
-```php
-use \NDArray as nd;
-
-
-$result = nd::dot(2, 2);
-print_r($result);
-```
-```php
-4
-```
-
 
 </TabItem>
 </Tabs>

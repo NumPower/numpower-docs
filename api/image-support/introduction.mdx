@@ -1,0 +1,15 @@
+# Introduction
+
+When NumPower is compiled in an environment with PHP-GD available, functions to facilitate
+image manipulation will be available for use.
+
+You can use a `GdImage` image to build an NDArray or as an argument for the different types of operations
+available, making image processing fast and with the possibility of performing image processing using a GPU.
+
+```php
+use \NDArray as nd;
+
+$gd_image = imagecreatefromjpeg("test_img.jpg");
+
+$gd_image_array = nd:array($gd_image);
+```

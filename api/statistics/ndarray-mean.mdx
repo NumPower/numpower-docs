@@ -1,8 +1,12 @@
 # NDArray::mean
 
 ```php
-public static function mean($a);
+public static function mean(NDArray|array|scalar $a): double;
 ```
+The arithmetic mean of the elements in the array. It computes the sum
+of all values and then divides it by the total number of elements in the array.
+
+Same as calling `nd::sum($a) / $a->size()`
 
 ---
 

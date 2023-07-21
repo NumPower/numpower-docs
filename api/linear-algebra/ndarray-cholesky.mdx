@@ -1,16 +1,8 @@
 # NDArray::cholesky
 
 ```php
-public static function cholesky($a);
+public static function cholesky(NDArray|array $a): NDArray;
 ```
+Calculates the Cholesky decomposition of a positive-definite array, decomposing
+it into a lower triangular matrix and its conjugate transpose.
 
----
-
-## Notes
-
-:::tip
-
-#### GPU SUPPORTED
-This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
-
-:::

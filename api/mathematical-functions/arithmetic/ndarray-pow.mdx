@@ -1,0 +1,20 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::pow
+
+```php
+public static function pow(NDArray|array|scalar $a, NDArray|array|scalar $b): NDArray|scalar;
+```
+Raises each element of an array `$a` to a specified power `$b` and returns a new array containing the result.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

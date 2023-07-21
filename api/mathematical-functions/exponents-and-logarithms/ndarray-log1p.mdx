@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::log1p
+
+```php
+public static function log1p(NDArray|array|scalar $array): NDArray|double;
+```
+Computes the element-wise logarithm of one plus an array, returning a new array with
+the natural logarithm of each element plus one.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

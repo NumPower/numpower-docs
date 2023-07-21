@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::sign
+
+```php
+public static function sign(NDArray|array|scalar $array): NDArray|double;
+```
+Computes the element-wise sign of an array, returning a new array
+with the sign of each element (1 for positive, -1 for negative, 0 for zero).
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

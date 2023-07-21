@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::clip
+
+```php
+public static function clip(NDArray|array|scalar $array, double $min, double $max): NDArray|double;
+```
+Clips the values of an array between a minimum and maximum value, returning
+a new array with the values clipped within the specified range.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

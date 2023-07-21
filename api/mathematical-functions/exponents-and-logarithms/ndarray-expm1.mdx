@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::expm1
+
+```php
+public static function expm1(NDArray|array|scalar $array): NDArray|double;
+```
+Calculates the element-wise exponential minus one function, returning
+a new array with each element raised to the power of `$a` - 1.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

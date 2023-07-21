@@ -1,0 +1,21 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::exp
+
+```php
+public static function exp(NDArray|array|scalar $array): NDArray|double;
+```
+Computes the element-wise exponential function of an array, returning a new array
+with each element raised to the power of `$a`.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

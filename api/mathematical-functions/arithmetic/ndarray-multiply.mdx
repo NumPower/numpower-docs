@@ -1,0 +1,101 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::multiply
+
+```php
+public static function multiply(NDArray|array|scalar $a, NDArray|array|scalar $b): NDArray;
+```
+Multiply arrays element-wise
+
+---
+
+## Parameters
+
+#### `$a` `$b`
+  - **Type** - NDArray | array | scalar
+  - The arrays to be multiplied, `$a` and `$b` must be of the same shape.
+
+---
+
+## Return
+
+#### `NDArray`
+
+- The multiplication of `$a` and `$b` element-wise
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([[2, -2], [1, -1]]);
+$b = new nd([[3, -3], [2, -1]]);
+
+$c = $a * $b;
+
+print_r($c);
+```
+```php
+[[6, 6],
+ [2, 1]]
+```
+
+
+</TabItem>
+<TabItem value="example2" label="Example 2">
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([[2, -2], [1, -1]]);
+$b = new nd([[3, -3], [2, -1]]);
+
+$c = nd::multiply($a, $b);
+
+print_r($c);
+```
+```php
+[[6, 6],
+ [2, 1]]
+```
+
+</TabItem>
+<TabItem value="example3" label="Example 3">
+
+
+```php
+use \NDArray as nd;
+
+$a = new nd([3, 2]);
+$b = new nd([-1, -1]);
+
+$c = nd::multiply($a, $b);
+
+print_r($c);
+```
+```php
+[-3, -2]
+```
+
+
+</TabItem>
+</Tabs>

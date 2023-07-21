@@ -1,0 +1,8 @@
+{
+  "label": "Extrema Finding",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Extrema finding operations refer to functions that allow you to find the minimum and maximum values within an array or along a specified axis."
+  }
+}

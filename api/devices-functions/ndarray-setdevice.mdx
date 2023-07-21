@@ -1,0 +1,11 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# NDArray::setDevice
+
+```php
+public static function setDevice(long $deviceId): null;
+```
+Specifies which GPU device to use by ID. By default, all operations are performed on GPU id = 0.
+Use the `dumpDevices` method if you want to check the ID in a multi-GPU environment.
+

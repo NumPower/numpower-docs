@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 # NDArray::array
 
 ```php
-public static function array(array $array): NDArray;
+public static function array(array|scalar|GdImage $array): NDArray;
 ```
 Creates a new NDArray from a PHP array of longs or doubles. It is the equivalent of `new NDArray($array);`
 

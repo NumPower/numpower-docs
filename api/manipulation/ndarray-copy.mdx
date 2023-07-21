@@ -1,1 +1,23 @@
 # NDArray::copy
+
+```php
+public static function copy(NDArray|array|scalar $a, long $device = NULL): NDArray;
+```
+Create a copy of array `$a`.
+
+#### $device options
+Default = NULL, copy on the same device as `$a`
+
+- **0** - CPU copy (same as `$a->cpu()`);
+- **1** - GPU copu (same as `$a->gpu()`);
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

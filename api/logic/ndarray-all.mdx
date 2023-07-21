@@ -1,1 +1,18 @@
 # NDArray::all
+
+```php
+public static function all(NDArray|array|scalar $a): bool;
+```
+Returns a single boolean value indicating whether all elements in the array evaluate to true. It checks if all
+elements are nonzero or equivalent to true.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::
