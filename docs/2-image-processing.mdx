@@ -1,0 +1,39 @@
+# Image Processing
+
+When NumPower is compiled in an environment with PHP-GD available, functions to facilitate
+image manipulation will be available for use.
+
+You can use a `GdImage` image to build an NDArray or as an argument for the different types of operations
+available, making image processing fast and with the possibility of performing image processing using a GPU.
+
+```php
+use \NDArray as nd;
+
+$gd_image = imagecreatefromjpeg("test_img.jpg");
+
+$gd_image_array = nd:array($gd_image);
+```
+
+## NumPower Image Tools
+
+We are creating a library for processing images with CPU and GPU using the NumPower extension and PHP-GD.
+To install the library just use the command below in an environment with composer installed.
+```
+composer require numpower/image
+```
+
+
+For now you can create RGB Images and perform some filters, we will work to create more methods and features for image manipulation.
+
+If you are an enthusiast and want to help, help us at https://github.com/NumPower/numpower-image
+
+```php
+use NumPower\Image\ImageRGB;
+
+$img = new ImageRGB("test_img.jpg", use_gpu: True); // Set $use_gpu to False for CPU computation
+
+$img->emboss(intensity: 2);
+$img->sobelHorizontal();
+
+$img->save("out.jpg");
+```
