@@ -1,3 +1,6 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Docker Image
 
 If you prefer a hassle-free installation process, you can use a pre-built Docker image that includes NumPower
@@ -14,10 +17,11 @@ To install NumPower using the Docker image, follow these steps:
 docker pull numpower/numpower:ubuntu-php82
 ```
 
-- For GPU support with CUDA, use the image:
+- For GPU support with CUDA, use the one of the following images:
 
 ```bash
-docker pull numpower/numpower:ubuntu-php82-cuda
+docker pull numpower/numpower:ubuntu-php82-cuda-11
+docker pull numpower/numpower:ubuntu-php82-cuda-12
 ```
 
 - Once the image is downloaded, you can run your PHP code with NumPower
@@ -31,9 +35,26 @@ docker run -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82 ph
 
 #### GPU Run
 Make sure you have nvidia-container-toolkit installed and that your docker is configured and ready to use the GPU
+<Tabs>
+<TabItem value="example1" label="PHP 8.2 - CUDA 11" default>
+
+
 ```bash
-docker run --gpus all -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82-cuda php /app/your-script.php
+docker run --gpus all -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82-cuda-11 /bin/bash
 ```
+
+
+</TabItem>
+<TabItem value="example2" label="PHP 8.2 - CUDA 12" default>
+
+
+```bash
+docker run --gpus all -it --rm -v /path/to/your/code:/app numpower/numpower:ubuntu-php82-cuda-12 /bin/bash
+```
+
+
+</TabItem>
+</Tabs>
 
 > Replace /path/to/your/code with the path to your PHP code on the host machine. Also, replace your-script.php with the name of your PHP script that uses NumPower.
 

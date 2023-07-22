@@ -13,8 +13,16 @@ use \NDArray as nd;
 
 $ndarray = new nd([[1, 2], [3, 4]]);
 ```
+:::note
 
-## Creating NDArray with initializers
+#### Boolean casting
+Boolean values in a PHP array will be converted to floats during initialization
+
+:::
+
+---
+
+## Using initializers
 
 You can also use one of several available initialization methods, below we will initialize a `2 x 4 x 4` `NDArray` 
 full of ones.
@@ -37,8 +45,9 @@ print_r($ndarray);
   [1, 1, 1, 1]]]
 ```
 
+---
 
-## Creating NDArray with an image
+## Creating NDArray from an image
 
 If you want to work with images, NumPower offers a quick way to perform image processing. 
 You can initialize an NDArray from a GD image:
@@ -68,3 +77,5 @@ For now, all images are processed in RGB format,
 we will work to implement other formats like CMYK and ARGB.
 
 :::
+
+---
