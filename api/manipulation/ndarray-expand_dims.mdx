@@ -1,0 +1,91 @@
+import TabItem from "@theme/TabItem";
+import Tabs from "@theme/Tabs";
+
+# NDArray::expand_dims
+
+```php
+public function expand_dims(NDArray|array|GdImage $target, array|int $axis): array;
+```
+Adds a new axis to the array at the specified position, thereby expanding its shape.
+
+---
+
+## Parameters
+
+### `$target`
+  - **Type** - NDArray | array | GdImage
+  - Target array.
+
+### `$axis`
+  - **Type** - array | int
+  - This parameter specifies the position where the new axis (or axes) will be inserted within the expanded array.
+
+---
+
+## Examples
+
+<Tabs>
+<TabItem value="example1" label="Example 1" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([[1, 2], [3, 4]]);
+echo nd::expand_dims($a, [0, 1]);
+```
+```text @title="Output"
+[[[1, 2, 3, 4]]]
+```
+
+
+</TabItem>
+<TabItem value="example2" label="Example 2" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([1, 2, 3, 4]);
+echo nd::expand_dims($val, -1);
+```
+```text @title="Output"
+[[1]
+ [2]
+ [3]
+ [4]]
+```
+
+
+</TabItem>
+<TabItem value="example3" label="Example 3" default>
+
+
+```php
+use \NDArray as nd;
+
+$a = nd::array([[1, 2], [3, 4]]);
+echo nd::expand_dims($val, 4);
+```
+```text @title="Output"
+Fatal error: Uncaught Error: invalid axis or axes provided. in /home/henrique/Documentos/Repositórios/numpower/test.php:8
+Stack trace:
+#0 /home/numpower/test.php(4): NDArray::expand_dims(Object(NDArray), 5)
+#1 {main}
+thrown in /home/numpower/test.php on line 4
+```
+
+
+</TabItem>
+</Tabs>
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM).
+
+:::

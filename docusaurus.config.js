@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'NumPower',
-  tagline: 'A library for numerical calculations and scientific computing made for PHP',
+  tagline: 'Extension for numerical calculations and scientific computing made for PHP',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

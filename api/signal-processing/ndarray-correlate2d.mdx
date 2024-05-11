@@ -1,0 +1,48 @@
+# NDArray::correlate2d
+
+```php
+public static function convolve2d(NDArray|array|GdImage $a, NDArray|array|GdImage $b, string $mode, string $boundary, scalar $fill_value = 0.0f): NDArray;
+```
+Convolve two 2-dimensional arrays.
+
+Convolve `$a` and `$b` with output size determined by `$mode`, and boundary conditions determined by `$boundary` and `$fill_value`.
+
+#### $mode options
+
+- **full** - Full discrete linear convolution of the inputs
+- **valid** - The output consists only of those elements that do not rely on the zero-padding. In ‘valid’ mode, either `$a` or `$b` must be at least as large as the other in every dimension.
+- **same** - The output is the same size as `$a`, centered with respect to the ‘full’ output.
+
+#### $boundary options
+
+- **fill** - Pad input arrays with `$fill_value`
+- **wrap** - Circular boundary
+- **symm** - Symmetrical boundary
+
+---
+
+## Parameters
+
+### `$a` `$b`
+  - **Type** - NDArray | array | GdImage
+  - The arrays to perform the convolution.
+
+### `$mode`
+  - **Type** - string
+  - The size of the output. Can be: `full`, `valid` and `same`
+
+### `$boundary`
+  - **Type** - string
+  - A flag indicating how to handle boundaries. Can be: `fill`, `wrap` and `symm`
+
+---
+
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM) and contains a custom CUDA kernel.
+
+:::

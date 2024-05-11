@@ -1,0 +1,8 @@
+{
+  "label": "Signal Processing",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "NumPower signal processing tools."
+  }
+}
