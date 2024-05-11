@@ -25,7 +25,6 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <TypingCode></TypingCode>
     </header>
   );
 }
