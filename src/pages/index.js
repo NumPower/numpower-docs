@@ -6,6 +6,7 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import { useColorMode } from '@docusaurus/theme-common';
 import styles from './index.module.css';
+import TypingCode from "../components/HomePageCodeTyping";
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -13,17 +14,18 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <img src={isDarkTheme ? "img/numpower.png" : "img/numpower_white.png"}  width="200px" />
+        <img src={isDarkTheme ? "img/numpower.png" : "img/numpower_white.png"}  width="200px" style={{zIndex : 2}} />
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/install/install">
-            Install NumPower (0.1.0-preview)
+            Install NumPower (0.4.0)
           </Link>
         </div>
       </div>
+      <TypingCode></TypingCode>
     </header>
   );
 }
@@ -32,11 +34,11 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="Extension for numerical calculations and scientific computing made for PHP">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+          <HomepageFeatures />
       </main>
     </Layout>
   );
