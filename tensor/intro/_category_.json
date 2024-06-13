@@ -1,0 +1,8 @@
+{
+  "label": "NumPower Autograd",
+  "position": 0,
+  "link": {
+    "type": "generated-index",
+    "description": "NumPower Autograd is a powerful library designed to provide seamless automatic differentiation capabilities\nusing the NumPower extension. Built with a focus on flexibility and efficiency, NumPower Autograd \nallows users to easily compute gradients of complex functions."
+  }
+}

@@ -1,0 +1,24 @@
+# ArithmeticOperand Class
+
+The abstract class `ArithmeticOperand` allows PHP classes that extend
+it to implement magic methods for native PHP arithmetic operations.
+
+```php
+class CustomOperand extends \ArithmeticOperand
+{
+    public function __add(int|float|array|object $b);
+    public function __mul(int|float|array|object $b);
+    public function __pow(int|float|array|object $b);
+    public function __div(int|float|array|object $b);
+    public function __sub(int|float|array|object $b);
+    public function __mod(int|float|array|object $b);
+}
+```
+
+Using the example above, PHP will execute the code below:
+
+```php
+$a = new CustomOperand();
+
+$c = $a * 2;
+```

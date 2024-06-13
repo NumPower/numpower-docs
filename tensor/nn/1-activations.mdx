@@ -1,0 +1,171 @@
+# Activations
+
+Activation functions are mathematical functions used in neural networks to introduce non-linearity into the model.
+This non-linearity enables the network to learn complex patterns and relationships in the data. Activation
+functions are applied to the output of each neuron, determining whether that neuron should be activated or not.
+
+Activation functions can be found through static calls in the class `NumPower\NeuralNetwork\Activations;`.
+
+## Non-Linear Activations
+
+---
+
+### tanh
+
+```php
+public static function tanh(int|float|array|\NDArray|Tensor $x, string $name = 'out_tanh'): Tensor
+```
+
+This function computes the hyperbolic tangent (tanh) activation function on the provided input.
+Tanh transforms each element of the input tensor using the hyperbolic tangent function, which maps
+values to the range (-1, 1). It is useful for normalizing inputs in neural networks and other computational models,
+providing a smooth transition between negative and positive values.
+
+### softplus
+
+```php
+public static function softplus(int|float|array|\NDArray|Tensor $x, string $name = 'out_softplus'): Tensor
+```
+
+This function computes the Softplus activation function on the provided input. Softplus transforms each element of
+the input tensor using the natural logarithm of the sum of the exponential of the element and one. This operation
+smooths out the output, ensuring it is always positive.
+
+The resulting tensor, with the same shape as the input, represents the output of the softplus operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_softplus'.
+
+### softmax
+
+```php
+public static function softmax(int|float|array|\NDArray|Tensor $x,  string $name = 'out_softmax'): Tensor
+```
+
+This function computes the softmax activation function on the provided input. Softmax transforms each element of
+the input tensor into a probability distribution by exponentiating each element and then normalizing the
+tensor so that the sum of all elements equals one. This makes softmax suitable for multi-class classification tasks,
+where it outputs probabilities for each class.
+
+The resulting tensor, with the same shape as the input, represents the output of the softmax operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_softmax'.
+
+### softsign
+
+```php
+public static function softsign(int|float|array|\NDArray|Tensor $x,  string $name = 'out_softsign'): Tensor
+```
+
+This function computes the Softsign activation function on the provided input.
+The softsign function transforms each element of the input tensor by dividing it by the absolute value of
+itself plus one. This transformation maps the input values to the range (-1, 1), preserving zero.
+
+The resulting tensor, with the same shape as the input, represents the output of the softsign operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_sigmoid'.
+
+### ReLU
+
+```php
+public static function ReLU(int|float|array|\NDArray|Tensor $inputs, string $name = 'out_relu'): Tensor
+```
+
+This function implements the Rectified Linear Unit (ReLU) activation function for a given tensor of inputs.
+ReLU activation sets all negative values in the tensor to zero, leaving positive values unchanged.
+The function returns a tensor with the same shape as the input tensor, representing the output of the ReLU
+operation. The optional parameter $name specifies the name of the output tensor and defaults to 'out_relu'.
+
+### CELU
+
+```php
+public static function CELU(int|float|array|\NDArray|Tensor $x,
+                            float $alpha = 1.0,
+                            string $name = 'out_celu'): Tensor
+```
+
+This function computes the Continuous Exponential Linear Unit (CELU) activation function on the provided input.
+CELU applies a non-linear transformation that smooths negative values of the input tensor based on
+the parameter $alpha, while leaving positive values unchanged.
+
+The resulting tensor, with the same shape as the input, represents the output of the CELU operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_celu'.
+
+### SiLU
+
+```php
+public static function SiLU(int|float|array|\NDArray|Tensor $x,
+                            float $beta = 1.0,
+                            string $name = 'out_silu'): Tensor
+```
+
+This function computes the Sigmoid-weighted Linear Unit (SiLU), also known as the Swish activation function,
+on the provided input. SiLU applies a non-linear transformation that smooths negative values of the input tensor
+based on the parameter $beta, using a sigmoid function, while preserving positive values unchanged.
+
+The resulting tensor, with the same shape as the input, represents the output of the SiLU operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_silu'.
+
+### SELU
+
+```php
+public static function SELU(int|float|array|\NDArray|Tensor $inputs,
+                            float $alpha=1.67326,
+                            float $scale=1.0507,
+                            string $name = 'out_selu'): Tensor
+```
+
+This function applies the Scaled Exponential Linear Unit (SELU) activation function to a tensor of inputs.
+SELU applies a scaled version of the Exponential Linear Unit (ELU), transforming each element of the
+input tensor based on the parameters $alpha and $scale. The function returns a tensor with the same shape
+as the input tensor, representing the output of the SELU operation. The optional parameter $name specifies
+the name of the output tensor and defaults to 'out_selu'.
+
+### exponential
+
+```php
+public static function exponential(int|float|array|\NDArray|Tensor $x, string $name = 'out_exponential'): Tensor
+```
+
+This function computes the exponential function on the provided input. The exponential function raises the mathematical constant
+𝑒 (approximately 2.718) to the power of each element in the input tensor. This operation is commonly used in various mathematical and statistical computations.
+
+The resulting tensor, with the same shape as the input, represents the output of the exponential operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_exponential'.
+
+### mish
+
+```php
+public static function mish(int|float|array|\NDArray|Tensor $x, string $name = 'out_mish'): Tensor
+```
+
+This function computes the Mish activation function on the provided input. Mish is a relatively newer activation
+function that smooths and enhances the training of neural networks by introducing a non-linearity
+that is differentiable and has favorable properties during gradient descent.
+
+
+### sigmoid
+
+```php
+public static function sigmoid(int|float|array|\NDArray|Tensor $x,  string $name = 'out_sigmoid'): Tensor
+```
+
+This function computes the sigmoid activation function on the provided input.
+The sigmoid function transforms each element of the input tensor to a value between 0 and 1,
+representing the probability-like output of a binary classification decision.
+
+The resulting tensor, with the same shape as the input, represents the output of the sigmoid operation.
+The optional parameter $name specifies the name of the output tensor and defaults to 'out_sigmoid'.
+
+## Linear Activations
+
+---
+
+A linear activation function, also known as an identity activation function, is a function where the output is
+directly proportional to the input. In mathematical terms, if the input to the function is 𝑥, the output is also 𝑥.
+
+### Linear
+
+```php
+public static function linear(int|float|array|\NDArray|Tensor $x, string $name = 'out_linear'): Tensor
+```
+
+This function represents the identity or linear activation function, which simply returns the input tensor
+𝑥  unchanged. It is used when no activation function is desired or required in a specific layer of a neural
+network or any other computational graph.

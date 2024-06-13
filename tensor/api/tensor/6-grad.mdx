@@ -1,0 +1,9 @@
+# grad
+
+```php
+public function grad(): Tensor
+```
+
+This attribute is NULL by default and becomes a Tensor the first time a call to backward()
+computes gradients for self. The attribute will then contain the gradients computed and
+future calls to backward() will accumulate (add) gradients into it.

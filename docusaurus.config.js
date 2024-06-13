@@ -85,6 +85,32 @@ const config = {
           }
       ),
     ],
+    [
+      'content-docs',
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      (
+          {
+            id: 'tensor',
+            path: 'tensor',
+            routeBasePath: 'tensor',
+            sidebarPath: require.resolve('./sidebarApi.js'),
+            // ... other options
+          }
+      ),
+    ],
+    [
+      'content-docs',
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      (
+          {
+            id: 'lattice',
+            path: 'lattice',
+            routeBasePath: 'lattice',
+            sidebarPath: require.resolve('./sidebarApi.js'),
+            // ... other options
+          }
+      ),
+    ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -113,6 +139,7 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {to: '/tensor/category/numpower-autograd', label: 'Autograd', position: 'left'}
         ],
       },
       footer: {

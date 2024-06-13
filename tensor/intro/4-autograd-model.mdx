@@ -1,0 +1,347 @@
+# Simple Neural Net from scratch using Autograd
+
+In this section, we'll introduce the concept of automatic differentiation (autograd) by implementing a simple
+neural network model using the NumPower Autograd library. This model will showcase how NumPower Autograd's
+autograd feature can be utilized to compute gradients and update model parameters efficiently during the training process.
+
+Let's walk through the implementation of a custom model using NumPower Autograd.
+This model will have one hidden layer and will use the sigmoid activation function for the output layer.
+We'll train the model to perform a basic binary classification task.
+
+## Create the SimpleModel class
+Let's start by creating a class that initializes the parameters we need for our neural network.
+Our neural network will have 1 hidden layer and 1 output layer.
+
+For our constructor, we will need the following parameters:
+
+- **inputDim:** Dimensionality of the input features.
+- **outputDim:** Dimensionality of the output.
+- **hiddenSize:** Number of neurons in the hidden layer.
+- **learningRate:** Learning rate for the optimizer.
+
+```php
+<?php
+use NDArray as nd;
+use NumPower\Tensor;
+use NumPower\NeuralNetwork\Activations as activation;
+use NumPower\NeuralNetwork\Losses as loss;
+
+class SimpleModel
+{
+    public Tensor $weights_hidden_layer;
+    public Tensor $weights_output_layer;
+    public Tensor $hidden_bias;
+    public Tensor $output_bias;
+    private float $learningRate;
+
+    public function __construct(int $inputDim = 2,
+                                int $outputDim = 1,
+                                int $hiddenSize = 16,
+                                float $learningRate = 0.01
+    )
+    {
+        $this->learningRate = $learningRate;
+        // Initialize hidden layer weights
+        $this->weights_hidden_layer = new Tensor(
+            nd::uniform([$inputDim, $hiddenSize], -0.5, 0.5),
+            name: 'weights_hidden_layer',
+            requireGrad: True
+        );
+        // Initialize output layer weights
+        $this->weights_output_layer = new Tensor(
+            nd::uniform([$hiddenSize, $outputDim],-0.5, 0.5),
+            name: 'weights_output_layer',
+            requireGrad: True
+        );
+        // Initialize hidden layer bias
+        $this->hidden_bias = new Tensor(
+            nd::uniform([$hiddenSize],  -0.5, 0.5),
+            name: 'hidden_bias',
+            requireGrad: True
+        );
+        // Initialize output layer bias
+        $this->output_bias = new Tensor(
+            nd::uniform([$outputDim], -0.5, 0.5),
+            name: 'output_bias',
+            requireGrad: True
+        );
+    }
+}
+```
+For each weight and bias of our layers, we will initialize a Variable using a random
+uniform algorithm from the NumPower extension.
+
+## Forward pass function
+The forward pass in a neural network is the process where the input data is passed through the network's
+layers to produce an output. This involves several key operations, including linear transformations
+(matrix multiplications), adding biases, and applying activation functions to introduce non-linearity.
+
+The forward function in the CustomModel class is responsible for computing the predictions of the neural network
+as well as the loss.
+
+```php
+public function forward(Tensor $x, Tensor $y): array
+{
+    // Forward pass - Hidden Layer
+    $x = $x->matmul($this->weights_hidden_layer) + $this->hidden_bias;
+    $x = activation::ReLU($x); // ReLU Activation
+
+    // Forward pass - Output Layer
+    $x = $x->matmul($this->weights_output_layer) + $this->output_bias;
+    $x = activation::sigmoid($x); // Sigmoid Activation
+
+    // Mean Squared Error
+    $loss = loss::MeanSquaredError($x, $y, name: 'loss');
+    return [$x, $loss];
+}
+```
+
+## Backward pass function
+This function, `backward`, performs the backward pass in a neural network training process, which includes
+the backpropagation of errors and the update of network weights and biases using Stochastic Gradient Descent (SGD).
+
+```php
+public function backward(Tensor $loss)
+{
+    // Trigger autograd
+    $loss->backward();
+
+    // SGD (Optimizer) - Update Hidden Layer weights and bias
+    $dw_dLoss = $this->weights_hidden_layer->grad();
+
+    $this->weights_hidden_layer -= ($dw_dLoss * $this->learningRate);
+    $this->weights_hidden_layer->resetGradients();
+
+    $this->hidden_bias -= ($this->hidden_bias->grad() * $this->learningRate);
+    $this->hidden_bias->resetGradients();
+
+    // SGD (Optimizer) - Update Output Layer weights and bias
+    $db_dLoss = $this->weights_output_layer->grad();
+
+    $this->weights_output_layer -= ($db_dLoss * $this->learningRate);
+    $this->weights_output_layer->resetGradients();
+
+    $this->output_bias -= $this->output_bias - ($this->output_bias->grad() * $this->learningRate);
+    $this->output_bias->resetGradients();
+}
+```
+#### Trigger Autograd for Loss Tensor:
+
+The function starts by invoking the backward method on the loss tensor. This initiates the backpropagation process, calculating the gradients of the loss with respect to all the parameters (weights and biases) in the network.
+
+#### Update Hidden Layer Weights and Bias:
+
+- Retrieve Gradients:
+The gradient of the loss with respect to the hidden layer weights is obtained using the grad() method.
+- Update Weights:
+The hidden layer weights are updated by subtracting the product of the gradients and the learning rate from the current weights.
+- Reset Gradients:
+The gradients for the hidden layer weights are reset to zero to prevent accumulation in the next backward pass.
+- Update Bias:
+Similarly, the hidden layer biases are updated by subtracting the product of their gradients and the learning rate.
+- Reset Gradients:
+The gradients for the hidden layer biases are reset.
+
+#### Update Output Layer Weights and Bias:
+
+- Retrieve Gradients:
+The gradient of the loss with respect to the output layer weights is obtained.
+- Update Weights:
+The output layer weights are updated by subtracting the product of the gradients and the learning rate from the current weights.
+- Reset Gradients:
+The gradients for the output layer weights are reset to zero.
+- Update Bias:
+The output layer biases are updated by subtracting the product of their gradients and the learning rate.
+- Reset Gradients:
+The gradients for the output layer biases are reset.
+
+This function ensures that the neural network parameters (weights and biases) are adjusted in response to the
+error calculated from the predictions, which helps the model to learn and improve its accuracy over time.
+The use of autograd simplifies the gradient computation process, while the manual updates and gradient resets
+ensure the parameters are correctly adjusted for each training iteration.
+
+## Training our model
+This model is already sufficient to solve several binary problems. For simplicity, let's train our
+model to solve the XOR problem. For this, we will use 4000 epochs during training:
+
+```php
+$num_epochs = 4000;
+$x = new Tensor(nd::array([[0, 0], [1, 0], [1, 1], [0, 1]]), name: 'x');
+$y = new Tensor(nd::array([[1], [0], [1], [0]]), name: 'y');
+
+$model = new SimpleModel();
+
+$start = microtime(true);
+for ($current_epoch = 0; $current_epoch < $num_epochs; $current_epoch++) {
+    // Forward Pass
+    [$prediction, $loss] = $model->forward($x, $y);
+    // Backward Pass
+    $model->backward($loss);
+    echo "\n Epoch ($current_epoch): ".$loss->getArray();
+}
+```
+
+## Predicting
+With our trained model, we can predict the XOR problem by performing another forward pass and checking
+the output of this pass:
+
+```php
+echo "\nPredicted:\n";
+$predicted = $model->forward($x, $y)[0];
+echo $predicted;
+```
+We can see that our neural network has converged and presents consistent results:
+```
+Predicted:
+[[0.876796]
+ [0.102802]
+ [0.884605]
+ [0.0873984]]
+```
+
+To use your results and tensors natively in PHP in conjunction with other libraries, you probably want to convert your
+Tensor to a native PHP value. To do this, simply call the `toArray()` method:
+
+```php
+print_r($predicted->toArray());
+```
+```
+Array
+(
+    [0] => Array
+        (
+            [0] => 0.876796
+        )
+
+    [1] => Array
+        (
+            [0] => 0.102802
+        )
+
+    [2] => Array
+        (
+            [0] => 0.884605
+        )
+
+    [3] => Array
+        (
+            [0] => 0.0873984
+        )
+
+)
+```
+
+## Full implementation
+
+Finally, this is the complete implementation of our solution.
+Try updating your tensors to use the GPU using the `useGpu: True` argument when creating your weights and biases.
+
+```php
+<?php
+require_once "vendor/autoload.php";
+
+use NDArray as nd;
+use NumPower\Tensor;
+use NumPower\NeuralNetwork\Activations as activation;
+use NumPower\NeuralNetwork\Losses as loss;
+
+class SimpleModel
+{
+    public Tensor $weights_hidden_layer;
+    public Tensor $weights_output_layer;
+    public Tensor $hidden_bias;
+    public Tensor $output_bias;
+    private float $learningRate;
+
+    public function __construct(int $inputDim = 2,
+                                int $outputDim = 1,
+                                int $hiddenSize = 16,
+                                float $learningRate = 0.01
+    )
+    {
+        $this->learningRate = $learningRate;
+        // Initialize hidden layer weights
+        $this->weights_hidden_layer = new Tensor(
+            nd::uniform([$inputDim, $hiddenSize], -0.5, 0.5),
+            name: 'weights_hidden_layer',
+            requireGrad: True
+        );
+        // Initialize output layer weights
+        $this->weights_output_layer = new Tensor(
+            nd::uniform([$hiddenSize, $outputDim],-0.5, 0.5),
+            name: 'weights_output_layer',
+            requireGrad: True
+        );
+        // Initialize hidden layer bias
+        $this->hidden_bias = new Tensor(
+            nd::uniform([$hiddenSize],  -0.5, 0.5),
+            name: 'hidden_bias',
+            requireGrad: True
+        );
+        // Initialize output layer bias
+        $this->output_bias = new Tensor(
+            nd::uniform([$outputDim], -0.5, 0.5),
+            name: 'output_bias',
+            requireGrad: True
+        );
+    }
+
+    public function forward(Tensor $x, Tensor $y): array
+    {
+        // Forward pass - Hidden Layer
+        $x = $x->matmul($this->weights_hidden_layer) + $this->hidden_bias;
+        $x = activation::ReLU($x); // ReLU Activation
+
+        // Forward pass - Output Layer
+        $x = $x->matmul($this->weights_output_layer) + $this->output_bias;
+        $x = activation::sigmoid($x); // Sigmoid Activation
+
+        // Mean Squared Error
+        $loss = loss::MeanSquaredError($x, $y, name: 'loss');
+        return [$x, $loss];
+    }
+
+    public function backward(Tensor $loss)
+    {
+        // Trigger autograd
+        $loss->backward();
+
+        // SGD (Optimizer) - Update Hidden Layer weights and bias
+        $dw_dLoss = $this->weights_hidden_layer->grad();
+
+        $this->weights_hidden_layer -= ($dw_dLoss * $this->learningRate);
+        $this->weights_hidden_layer->resetGradients();
+
+        $this->hidden_bias -= ($this->hidden_bias->grad() * $this->learningRate);
+        $this->hidden_bias->resetGradients();
+
+        // SGD (Optimizer) - Update Output Layer weights and bias
+        $db_dLoss = $this->weights_output_layer->grad();
+
+        $this->weights_output_layer -= ($db_dLoss * $this->learningRate);
+        $this->weights_output_layer->resetGradients();
+
+        $this->output_bias -= $this->output_bias - ($this->output_bias->grad() * $this->learningRate);
+        $this->output_bias->resetGradients();
+    }
+}
+
+$num_epochs = 4000;
+$x = new Tensor(nd::array([[0, 0], [1, 0], [1, 1], [0, 1]]), name: 'x');
+$y = new Tensor(nd::array([[1], [0], [1], [0]]), name: 'y');
+
+$model = new SimpleModel();
+
+$start = microtime(true);
+for ($current_epoch = 0; $current_epoch < $num_epochs; $current_epoch++) {
+    // Forward Pass
+    [$prediction, $loss] = $model->forward($x, $y);
+    // Backward Pass
+    $model->backward($loss);
+    echo "\n Epoch ($current_epoch): ".$loss->getArray();
+}
+
+echo "\nPredicted:\n";
+$predicted = $model->forward($x, $y)[0];
+print_r($predicted->toArray());
+```

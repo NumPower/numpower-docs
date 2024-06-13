@@ -1,0 +1,8 @@
+{
+  "label": "API",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "This section contains all the mathematical and manipulation operations of the Tensor class."
+  }
+}

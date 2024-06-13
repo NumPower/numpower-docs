@@ -1,0 +1,8 @@
+{
+  "label": "Tensor API",
+  "position": 0,
+  "link": {
+    "type": "generated-index",
+    "description": "This section contains general Tensor methods."
+  }
+}

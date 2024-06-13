@@ -1,0 +1,8 @@
+{
+  "label": "NumPower Lattice",
+  "position": 0,
+  "link": {
+    "type": "generated-index",
+    "description": "NumPower DNN Library"
+  }
+}

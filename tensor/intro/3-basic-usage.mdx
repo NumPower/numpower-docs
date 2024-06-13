@@ -1,0 +1,169 @@
+# Basic usage
+
+On this page we will see how we can use the Autograd library in a simplified way and
+how to use a GPU to perform mathematical operations.
+
+## The Tensor class
+A Tensor is a fundamental data structure used in machine learning and deep learning to represent
+multidimensional arrays. Tensors generalize matrices to higher dimensions.
+They are essentially a way to store data in a format that can be efficiently processed by various
+mathematical operations and are crucial in the implementation of neural networks and other machine learning algorithms.
+
+```php
+<?php
+require_once "vendor/autoload.php";
+
+use \NumPower\Tensor;
+
+$x = new Tensor([[1, 2], [3, 4]]);
+$y = new Tensor([[5, 6], [7, 8]]);
+```
+In the code above we created two tensors, and now we can perform
+several high-performance mathematical operations, let's do some mathematical operations:
+
+```php
+$result = ($x + $y) / $y;
+echo $result;
+```
+```
+[[1.2, 1.33333]
+ [1.42857, 1.5]]
+```
+
+### Tensor naming and graphs
+Before calculating the derivatives, let's call the graph method so we can visualize our
+backward pass, this step is optional and is generally used for debugging:
+
+```php
+$result->graph();
+```
+```
+Operation            Arguments
+==================== ========================================
+divide               [_nd_, _nd_]
+add                  [_nd_, _nd_]
+```
+
+We can see that our operations were properly registered, but as our tensors are not named, they only appear as `_nd_`
+in the arguments. To make the graph and other parts of your code easier to read, we can name our tensors:
+
+```php
+$x = new Tensor([[1, 2], [3, 4]], name: 'x');
+$y = new Tensor([[5, 6], [7, 8]], name: 'y');
+```
+
+Now when we call the `graph()` method we will be able to visualize more clearly our forward pass (from bottom to top)
+and our backward pass (from top to bottom) where the derivatives will be calculated.
+
+```
+Operation            Arguments
+==================== ========================================
+divide               [x, y]
+add                  [x, y]
+```
+
+The output tensors will inherit the names of the input tensors in some operations, so `x` in the division
+operation is actually the result of the sum of `x + y`. You override this name in operations when specifying a
+name for the output of an operation using the `name` argument
+
+```php
+$result = $x->add($y, name: 'out_add') / $y;
+```
+
+Now if we run the code again, we will have the following graph:
+
+```
+Operation            Arguments
+==================== ========================================
+divide               [out_add, y]
+add                  [x, y]
+```
+
+Great, now we have a clear view of our graph and an overview of our forward and backward pass.
+
+### Calculating gradients
+
+Finally, let's now calculate the gradients of `$result` with respect to `$x` and `$y`. To do this,
+simply call the `backward()` method in the `$result` variable.
+
+```php
+$result->backward();
+```
+```
+Fatal error: Uncaught Exception: grad can only be created for scalar outputs
+```
+
+Oops! We have an exception. This happens because the Autograd library requires the gradient to be calculated
+from a scalar and in this case, `$result` is an n-dimensional array. To do this, we need to reduce our
+output using a method like `sum` or `mean`:
+
+```php
+$result = ($x->add($y, name: 'out_add') / $y)->sum();
+```
+
+Now that we have a scalar, when we call Tensor's `backward()` method the derivatives can be calculated.
+To get the gradients of `$x` and `$y`, just use the `grad()` method on both variables after calling the `backward` method:
+
+```php
+$result->backward();
+echo $x->grad();
+echo $y->grad();
+```
+```
+Fatal error: Uncaught Exception: No gradient found for `x`
+```
+
+
+Another exception, but now our problem is that we do not specify which tensors should have their gradients calculated.
+By default, tensors do not require gradient calculation, this is to avoid calculating and storing useless gradients in more complex
+functions. We will use the `requireGrad` argument when creating `$x` and `$y` to say that we would
+like to calculate the gradients for both input tensors:
+
+```php
+$x = new Tensor([[1, 2], [3, 4]], name: 'x', requireGrad: True);
+$y = new Tensor([[5, 6], [7, 8]], name: 'y', requireGrad: True);
+```
+
+Now when we re-execute the code, we will have the gradients of both inputs in relation to `$result`:
+
+```
+[[0.2, 0.166667]
+ [0.142857, 0.125]]
+[[-0.04, -0.0555556]
+ [-0.0612245, -0.0625]]
+```
+
+### Section source code
+Here is what your code should look like when you finish this section:
+
+```php
+<?php
+require_once "vendor/autoload.php";
+use NumPower\Tensor;
+
+$x = new Tensor([[1, 2], [3, 4]], name: 'x', requireGrad: True);
+$y = new Tensor([[5, 6], [7, 8]], name: 'y', requireGrad: True);
+
+$result = ($x->add($y, name: 'out_add') / $y)->sum();
+
+$result->backward();
+echo $x->grad();
+echo $y->grad();
+```
+
+## Using the GPU to perform operations
+
+If you have a graphics card with CUDA support and have compiled and installed the NumPower extension with
+GPU support enabled, you can use your GPU to store and perform mathematical and manipulation operations.
+
+In our implementation, we thought about practicality and therefore, to use your GPU, simply use the
+`useGpu` argument when creating your Tensor.
+
+```php
+$x = new Tensor([[1, 2], [3, 4]], name: 'x', requireGrad: True, useGpu: True);
+$y = new Tensor([[5, 6], [7, 8]], name: 'y', requireGrad: True, useGpu: True);
+```
+
+> **Device Mismatch**: Like NDArrays, tensors also require that all tensors involved in operations with multiple
+arguments are stored on the same device. Operations between tensors stored on the CPU and
+others stored on the GPU will cause a fatal error.

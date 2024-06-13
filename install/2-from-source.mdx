@@ -33,12 +33,6 @@ $ make install
 ```
 
 ### GPU Compile
-
-For now, when using the build with GPU support, AVX2 will be disabled even when available (due to a limitation of NVCC itself)
-so some CPU operations may be slower.
-
-We are studying a way to mix NVCC and GCC to use both technologies simultaneously.
-
 ```bash
 $ phpize
 $ ./configure --with-cuda

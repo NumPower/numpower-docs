@@ -1,0 +1,8 @@
+{
+  "label": "Neural Network Module",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The NumPower Autograd library comes with several tools and algorithms to facilitate the development of neural networks."
+  }
+}
