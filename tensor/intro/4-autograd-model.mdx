@@ -167,7 +167,7 @@ model to solve the XOR problem. For this, we will use 4000 epochs during trainin
 ```php
 $num_epochs = 4000;
 $x = new Tensor(nd::array([[0, 0], [1, 0], [1, 1], [0, 1]]), name: 'x');
-$y = new Tensor(nd::array([[1], [0], [1], [0]]), name: 'y');
+$y = new Tensor(nd::array([[0], [1], [0], [1]]), name: 'y');
 
 $model = new SimpleModel();
 
@@ -193,10 +193,10 @@ echo $predicted;
 We can see that our neural network has converged and presents consistent results:
 ```
 Predicted:
-[[0.876796]
- [0.102802]
- [0.884605]
- [0.0873984]]
+[[0.102802]
+ [0.876796]
+ [0.0873984]
+ [0.884605]]
 ```
 
 To use your results and tensors natively in PHP in conjunction with other libraries, you probably want to convert your
@@ -210,22 +210,22 @@ Array
 (
     [0] => Array
         (
-            [0] => 0.876796
+            [0] => 0.102802
         )
 
     [1] => Array
         (
-            [0] => 0.102802
+            [0] => 0.876796
         )
 
     [2] => Array
         (
-            [0] => 0.884605
+            [0] => 0.0873984
         )
 
     [3] => Array
         (
-            [0] => 0.0873984
+            [0] => 0.884605
         )
 
 )
@@ -328,7 +328,7 @@ class SimpleModel
 
 $num_epochs = 4000;
 $x = new Tensor(nd::array([[0, 0], [1, 0], [1, 1], [0, 1]]), name: 'x');
-$y = new Tensor(nd::array([[1], [0], [1], [0]]), name: 'y');
+$y = new Tensor(nd::array([[0], [1], [0], [1]]), name: 'y');
 
 $model = new SimpleModel();
 
