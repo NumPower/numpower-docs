@@ -1,1 +1,0 @@
-(self.webpackChunknumpower=self.webpackChunknumpower||[]).push([[5684],{9039:(e,s,u)=>{"use strict";u.d(s,{Z:()=>p});var n=u(1336);const p=n},5525:()=>{}}]);
