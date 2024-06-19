@@ -121,7 +121,7 @@ public function backward(Tensor $loss)
     $this->weights_output_layer -= ($db_dLoss * $this->learningRate);
     $this->weights_output_layer->resetGradients();
 
-    $this->output_bias -= $this->output_bias - ($this->output_bias->grad() * $this->learningRate);
+    $this->output_bias -= $this->output_bias->grad() * $this->learningRate;
     $this->output_bias->resetGradients();
 }
 ```
@@ -320,7 +320,7 @@ class SimpleModel
         $this->weights_output_layer -= ($db_dLoss * $this->learningRate);
         $this->weights_output_layer->resetGradients();
 
-        $this->output_bias -= $this->output_bias - ($this->output_bias->grad() * $this->learningRate);
+        $this->output_bias -= ($this->output_bias->grad() * $this->learningRate);
         $this->output_bias->resetGradients();
     }
 }
