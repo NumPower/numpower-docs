@@ -68,7 +68,7 @@ class SimpleModel
     }
 }
 ```
-For each weight and bias of our layers, we will initialize a Variable using a random
+For each weight and bias of our layers, we will initialize a Tensor using a random
 uniform algorithm from the NumPower extension.
 
 ## Forward pass function
@@ -76,7 +76,7 @@ The forward pass in a neural network is the process where the input data is pass
 layers to produce an output. This involves several key operations, including linear transformations
 (matrix multiplications), adding biases, and applying activation functions to introduce non-linearity.
 
-The forward function in the CustomModel class is responsible for computing the predictions of the neural network
+The forward function in the SimpleModel class is responsible for computing the predictions of the neural network
 as well as the loss.
 
 ```php
@@ -171,7 +171,6 @@ $y = new Tensor(nd::array([[0], [1], [0], [1]]), name: 'y');
 
 $model = new SimpleModel();
 
-$start = microtime(true);
 for ($current_epoch = 0; $current_epoch < $num_epochs; $current_epoch++) {
     // Forward Pass
     [$prediction, $loss] = $model->forward($x, $y);
