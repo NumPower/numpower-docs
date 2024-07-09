@@ -1,7 +1,7 @@
 # NDArray::reshape
 
 ```php
-public function reshape(array $shape): NDArray;
+public static function reshape(NDArray|array|float|int $target, array $shape): NDArray|float|int;
 ```
 Changes the shape of the NDArray.
 

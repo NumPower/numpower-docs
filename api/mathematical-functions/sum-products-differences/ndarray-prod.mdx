@@ -4,10 +4,10 @@ import TabItem from '@theme/TabItem';
 # NDArray::prod
 
 ```php
-public static function prod(NDArray|array|scalar $a, long $axis = NULL);
+public static function prod(NDArray|array|float|int $a, ?int $axis = NULL): NDArray|float|int;
 ```
-Calculates the product of all elements in the array and returns a scalar value.
-
+Calculates the product of all elements in the array over a given axis along which a product is performed.
+The default, axis=NULL, will calculate the product of all the elements in the input array.
 ---
 
 ## Parameters

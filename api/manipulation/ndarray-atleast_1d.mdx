@@ -4,8 +4,11 @@ import Tabs from "@theme/Tabs";
 # NDArray::atleast_1d
 
 ```php
-public function atleast_1d(NDArray|array|GdImage $array): array;
+public static function atleast_1d(NDArray|array|float|int $array): NDArray;
 ```
+Convert inputs to arrays with at least one dimension.
+
+Scalar inputs are converted to 1-dimensional arrays, whilst higher-dimensional inputs are preserved.
 
 ---
 

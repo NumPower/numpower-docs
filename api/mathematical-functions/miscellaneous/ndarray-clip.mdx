@@ -4,7 +4,7 @@ import TabItem from '@theme/TabItem';
 # NDArray::clip
 
 ```php
-public static function clip(NDArray|array|scalar $array, double $min, double $max): NDArray|double;
+public static function clip(NDArray|array|float|int $array, float $min, float $max): NDArray|float|int;
 ```
 Clips the values of an array between a minimum and maximum value, returning
 a new array with the values clipped within the specified range.

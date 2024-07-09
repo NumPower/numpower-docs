@@ -4,7 +4,7 @@ import Tabs from "@theme/Tabs";
 # NDArray::expand_dims
 
 ```php
-public function expand_dims(NDArray|array|GdImage $target, array|int $axis): array;
+public static function expand_dims(NDArray|array|float|int $target, int|array $axis = NULL): NDArray;
 ```
 Adds a new axis to the array at the specified position, thereby expanding its shape.
 

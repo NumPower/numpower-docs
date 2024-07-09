@@ -1,7 +1,7 @@
 # NDArray::allclose
 
 ```php
-public static function allclose(NDArray|array|scalar $a, NDArray|array|scalar $b, scalar $rtol = 1e-05, scalar atol = 1e-08): NDArray;
+public static function allclose(NDArray|array|float|int $a, NDArray|array|float|int $b, float $rtol = 1e-05, float $atol = 1e-08): NDArray;
 ```
 Checks if all elements in two arrays are approximately equal within a specified tolerance element-wise.
 
