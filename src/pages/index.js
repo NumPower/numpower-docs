@@ -21,7 +21,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/install/install">
-            Install NumPower (0.5.1)
+            Install NumPower (0.5.2)
           </Link>
         </div>
       </div>
