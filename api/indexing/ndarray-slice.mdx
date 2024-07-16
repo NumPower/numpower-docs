@@ -1,0 +1,24 @@
+# NDArray::slice
+
+```php
+public function slice(...$indices): NDArray|float;
+```
+Array slicing, each argument represents a slice of a dimension.
+
+Empty arrays represent all values of a dimension, arrays with values are treated in
+the format `[start, stop, step]`, when only one value exists, it is automatically
+assigned to stop `[0, stop, 1]`, the default value of start is 0 and step is 1.
+
+When instead of an array, a number is passed, it is also assigned to the
+stop of that dimension `[0, stop, 1]`.
+
+---
+
+## Notes
+
+:::tip
+
+#### GPU SUPPORTED
+This operation is supported by GPU (VRAM).
+
+:::
