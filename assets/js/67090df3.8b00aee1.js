@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunknumpower=self.webpackChunknumpower||[]).push([[8774],{70057:t=>{t.exports=JSON.parse('{"title":"NumPower Lattice","description":"NumPower DNN Library","slug":"/category/numpower-lattice","permalink":"/lattice/category/numpower-lattice","navigation":{"next":{"title":"What is Lattice?","permalink":"/lattice/intro/lattice-intro"}}}')}}]);
